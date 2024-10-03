@@ -29,7 +29,7 @@ bool speakerOn = false;
 
 LiquidCrystal_I2C lcd(0x3f, 16, 2);  // Declare i2c LCD
 void moveToHome();
-void moveToEnd();
+void startGame();
 void updateLCD(const char* status, uint16_t count);
 void updateValue(uint16_t count);
 void updateTime(uint8_t time);
@@ -64,7 +64,7 @@ void loop() {
     gameRunning = true;
     touchCount = 0;  // Reset the touch count
     updateLCD("Run", touchCount);
-    moveToEnd();  // Move towards the end position
+    startGame();  // Move towards the end position
   }
 }
 
@@ -92,7 +92,7 @@ void moveToHome() {
 }
 
 // Function to move the motor towards the end position
-void moveToEnd() {               // game running
+void startGame() {               // game running
   digitalWrite(enablePin, LOW);  // Enable motor
   //set time variable
   startTime = millis();
@@ -191,7 +191,7 @@ void moveToEnd() {               // game running
 
   // beep signal to indicate time over
   digitalWrite(speakerPin, HIGH);
-  delay(1000);
+  delay(1500);
   digitalWrite(speakerPin, LOW);
   delay(500);
   speakerOn = false;
